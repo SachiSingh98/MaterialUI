@@ -9,6 +9,9 @@ import {
   FormControl,
   MenuItem,
   InputLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
   Select,
 } from "@mui/material";
 
@@ -18,7 +21,8 @@ export default function FormFields() {
     email: "",
     password: "",
     terms: false,
-    select:0
+    select: 10,
+    genders:''
   });
   const [data, setdata] = useState("No Data");
 
@@ -34,14 +38,14 @@ export default function FormFields() {
 
   return (
     <>
-      <form style={{ display: "flex", flexDirection: "column" }}>
+      <form  style={{ display: "flex", flexDirection: "column"  , padding:"10px 20px"}}>
         <TextField
           name="name"
           type="text"
           onChange={handleOnChange}
           variant="filled"
           placeholder="Name"
-          sx={{ margin: 3 }}
+          sx={{marginTop:1}}
         />
         <TextField
           name="email"
@@ -49,31 +53,40 @@ export default function FormFields() {
           onChange={handleOnChange}
           variant="outlined"
           placeholder="Email"
-          sx={{ margin: 3 }}
+          sx={{marginTop:1}}
         />
         <TextField
           name="password"
+          sx={{marginTop:1}}
           type="password"
           onChange={handleOnChange}
           variant="standard"
           placeholder="Password"
-          sx={{ margin: 3 }}
         />
 
-        {/* Select boxes */}
-        <FormControl style={{margin:"5px"}} >
+        {/*------------------------------------------------------------------- Select boxes -------------------------------*/}
+        <FormControl sx={{marginTop:1}}>
           <InputLabel>Age</InputLabel>
-          <Select  name="select" label="Age" onChange={handleOnChange}>
+          <Select name="select" label="Age" value={value.select} onChange={handleOnChange}>
             <MenuItem value={10}>Ten</MenuItem>
             <MenuItem value={20}>Twenty</MenuItem>
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>
         </FormControl>
 
+        {/* ------------------------------------------------------------Radio------------------------------------------------- */}
+        <FormControl>
+          <FormLabel>Gender</FormLabel>
+          <RadioGroup defaultValue="Female" onChange={handleOnChange} name="genders">
+            <FormControlLabel value="Female" control={<Radio />} label="Female" />
+            <FormControlLabel value="Male" control={<Radio />} label="Male" />
+            <FormControlLabel value="Other" control={<Radio />} label="Other" />
+          </RadioGroup>
+        </FormControl>
+
         {/*--------------------------------------------- Check Boxes --------------------------------------*/}
         <FormGroup>
           <FormControlLabel
-            sx={{ margin: "5px" }}
             control={
               <Checkbox
                 name="terms"
@@ -89,7 +102,6 @@ export default function FormFields() {
 
         <Button
           type="Submit"
-          sx={{ margin: "5px" }}
           onClick={handleOnSubmit}
           variant="contained"
         >
@@ -98,11 +110,12 @@ export default function FormFields() {
       </form>
 
       <Typography margin={3}>
-       Name :  {data.name} <br />
-       Email :  {data.email} <br />
-       Password : {data.password} <br />
-        Age : {data.select} <br/>
-       Terms & Condition : {data.terms ? "Agree" : null}
+        Name : {data.name} <br />
+        Email : {data.email} <br />
+        Password : {data.password} <br />
+        Age : {data.select} <br />
+        Gender : {data.genders} <br/>
+        Terms & Condition : {data.terms ? "Agree" : null}
       </Typography>
     </>
   );
