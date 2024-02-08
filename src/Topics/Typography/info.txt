@@ -1,0 +1,7 @@
+ To see the properties press ctrl + space it will show you the properties of the attribute.
+
+
+Important properties :- 
+1- Variant -> It is used to define the html tags we can use Variant in typography by pressing the ctrl + space then we can choose variant and again we can press the ctrl + space to see the properties and the nwe can use it . 
+2 - Additional CSS properties -> we can basically use the fontweight font size and other css properties directly.
+3- sx - It is like an style proprty which provides extra properties like which are not available or which are available too.  sx={{color:"Red"}}
