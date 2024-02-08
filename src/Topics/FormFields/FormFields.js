@@ -6,25 +6,30 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
+  FormControl,
+  MenuItem,
+  InputLabel,
+  Select,
 } from "@mui/material";
 
 export default function FormFields() {
-
-  const [value, setValue] = useState({name: "",
-  email: "",
-  password: "",
-  terms:false
-});
+  const [value, setValue] = useState({
+    name: "",
+    email: "",
+    password: "",
+    terms: false,
+    select:0
+  });
   const [data, setdata] = useState("No Data");
 
   const handleOnChange = (e) => {
-    setValue({...value , [e.target.name]:e.target.value})
+    setValue({ ...value, [e.target.name]: e.target.value });
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     setdata(value);
-    console.log(value)
+    console.log(value);
   };
 
   return (
@@ -55,11 +60,31 @@ export default function FormFields() {
           sx={{ margin: 3 }}
         />
 
-        {/* Check Boxes */}
+        {/* Select boxes */}
+        <FormControl style={{margin:"5px"}} >
+          <InputLabel>Age</InputLabel>
+          <Select  name="select" label="Age" onChange={handleOnChange}>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
+
+        {/*--------------------------------------------- Check Boxes --------------------------------------*/}
         <FormGroup>
-          <FormControlLabel  sx={{ margin: "5px" }} control={<Checkbox  name="terms" onChange={(e) => {
-          setValue({ ...value, terms: e.target.checked });
-        }} />} label="Agree to terms" name="termsandcondition" />
+          <FormControlLabel
+            sx={{ margin: "5px" }}
+            control={
+              <Checkbox
+                name="terms"
+                onChange={(e) => {
+                  setValue({ ...value, terms: e.target.checked });
+                }}
+              />
+            }
+            label="Agree to terms"
+            name="termsandcondition"
+          />
         </FormGroup>
 
         <Button
@@ -73,10 +98,11 @@ export default function FormFields() {
       </form>
 
       <Typography margin={3}>
-        {data.name} <br />
-        {data.email} <br />
-        {data.password} <br />
-        {data.terms ? "Agree" : null } 
+       Name :  {data.name} <br />
+       Email :  {data.email} <br />
+       Password : {data.password} <br />
+        Age : {data.select} <br/>
+       Terms & Condition : {data.terms ? "Agree" : null}
       </Typography>
     </>
   );
