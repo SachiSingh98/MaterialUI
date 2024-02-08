@@ -1,10 +1,10 @@
 import React from 'react'
-import Typo from './Topics/Typography/Typography'
+import Btn from './Topics/Button/Btn'
 
 function App() {
   return (
     <div>
-      <Typo/>
+      <Btn/>
     </div>
   )
 }
