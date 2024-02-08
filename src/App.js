@@ -1,12 +1,14 @@
 import React from 'react'
-import FormFields from './Topics/FormFields/FormFields'
+import Navbar from './Topics/Appbar/Navbar'
+// import FormFields from './Topics/FormFields/FormFields'
 // import Btn from './Topics/Button/Btn'
 
 function App() {
   return (
     <div>
+      <Navbar/>
       {/* <Btn/> */}
-      <FormFields/>
+      {/* <FormFields/> */}
     </div>
   )
 }
