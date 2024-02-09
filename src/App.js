@@ -1,11 +1,13 @@
 import React from "react";
-import ListTopic from "./Topics/ListTopic/ListTopic";
+import Accordians from "./Topics/Accordions/Accordians";
+// import ListTopic from "./Topics/ListTopic/ListTopic";
 // import ContainerTopic from './Topics/ContainerTopic/ContainerTopic'
 
 function App() {
   return <>
   {/* <ContainerTopic/> */}
-  <ListTopic/>
+  {/* <ListTopic/> */}
+  <Accordians/>
   </>;
 }
 
