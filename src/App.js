@@ -1,11 +1,11 @@
 import React from 'react'
-import Dialogs from './Topics/Dialogs/Dialogs'
+import DialogAndModal from './Topics/Dialogs/DialogAndModal'
 
 
 function App() {
   return (
     <div>
-      <Dialogs/>
+      <DialogAndModal/>
     </div>
   )
 }
