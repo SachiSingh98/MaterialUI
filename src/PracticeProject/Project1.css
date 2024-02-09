@@ -1,5 +1,5 @@
 .DashBoardBtn:hover{
-    background-color:#1976D2;
+    background-color:gray;
     color: white;
 }
 
@@ -8,4 +8,14 @@
     padding: 10px;
     width: 50%;
     margin-top: 100px;
+}
+
+
+@media (width <= 786px) {
+    .FormDiv{
+        margin: auto;
+        padding: 10px;
+        width: 100%;
+        margin-top: 50px;
+    }
 }

@@ -1,12 +1,22 @@
 import React from 'react'
-import DialogAndModal from './Topics/Dialogs/DialogAndModal'
-
+import Project1 from './PracticeProject/Project_1'
+import { Route , Routes , BrowserRouter } from 'react-router-dom'
+import Contact from './PracticeProject/Contact'
+import Home from './PracticeProject/Home'
+import About from './PracticeProject/About'
 
 function App() {
   return (
-    <div>
-      <DialogAndModal/>
-    </div>
+    <>
+      <BrowserRouter>
+      <Project1/>
+      <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path='/contact' element={<Contact/>} />
+        <Route path='/about' element={<About/>} />
+      </Routes>
+      </BrowserRouter>
+    </>
   )
 }
 
