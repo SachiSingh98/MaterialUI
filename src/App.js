@@ -1,11 +1,11 @@
 import React from 'react'
-import Cards from './Topics/Cards/Cards'
+import Dialogs from './Topics/Dialogs/Dialogs'
 
 
 function App() {
   return (
     <div>
-      <Cards/>
+      <Dialogs/>
     </div>
   )
 }
