@@ -136,7 +136,6 @@ export default function Contact() {
             <FormControl style={{ marginTop: "10px" }} fullWidth>
               <InputLabel>Age</InputLabel>
               <Select
-                labelId="demo-simple-select-label"
                 value={age}
                 label="Age"
                 onChange={(e) => {
