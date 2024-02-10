@@ -11,11 +11,36 @@
 }
 
 
+
+.MobileViewLogo{
+    display: none;
+}
+.HamburgerBtn{
+    display: none;
+}
+
+
 @media (width <= 786px) {
     .FormDiv{
         margin: auto;
         padding: 10px;
         width: 100%;
         margin-top: 50px;
+    }
+
+    /* To hide */
+    .TabsBox{
+        display: none;
+    }
+    .MainLogo{
+        display: none;
+    }
+
+    /* To show */
+    .MobileViewLogo{
+        display: block;
+    }
+    .HamburgerBtn{
+        display: block;
     }
 }

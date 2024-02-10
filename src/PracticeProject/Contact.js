@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Button,
   TextField,
@@ -9,19 +9,16 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  Container,
-  Typography,
-  Box,
-  Card,
   FormLabel,
   RadioGroup,
   Radio
 } from "@mui/material";
 
+import { InfoContext } from "../Context/InfoContext";
+
 export default function Contact() {
   const [age, setAge] = useState(10);
-  const [showData, setShowData] = useState(false);
-
+  const {data , setdata} = useContext(InfoContext)
   const [value, setValue] = useState({
     name: "",
     email: "",
@@ -30,7 +27,6 @@ export default function Contact() {
     age: 10,
     genders: "",
   });
-  const [data, setdata] = useState([]);
 
   const handleOnChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });
@@ -39,67 +35,22 @@ export default function Contact() {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     setdata([...data, value]);
-    setShowData(true);
+    setValue({
+      name: "",
+      email: "",
+      password: "",
+      terms: false,
+      age: 10,
+      genders: "",
+    });
   };
 
 
-  const handleOnDelete = (i)=>{
-    const filterData = data.filter((data,index)=>{
-        return index !== i
-    })
-    setdata(filterData)
-    setShowData(true)
-  }
+
   return (
     <>
       {/* ---------------------Form here------------------------- */}
 
-      {showData ? (
-        <Container sx={{ marginTop: "100px" }}>
-          {data && data.length > 0 ? (
-            data.map((item, index) => (
-              <Box key={index}>
-                <Card sx={{padding:"10px" , margin:"10px 0px"}} >
-                    <Typography>
-                        Name : {item.name}
-                    </Typography>
-
-                    <Typography>
-                        Email : {item.email}
-                    </Typography>
-
-                    <Typography>
-                        Password : {item.password}
-                    </Typography>
-
-                    <Typography>
-                        Age : {item.age}
-                    </Typography>
-
-                    <Typography>
-                        Gender : {item.genders}
-                    </Typography>
-
-                    <Button onClick={()=>{handleOnDelete(index)}} sx={{marginTop:"5px"}} variant="contained">
-                        Delete
-                    </Button>
-                </Card>
-              </Box>
-            ))
-          ) : (
-            <Typography>No Data</Typography>
-          )}
-
-          <Button
-            variant="contained"
-            onClick={() => {
-              setShowData(false);
-            }}
-          >
-            Back
-          </Button>
-        </Container>
-      ) : (
         <div className="FormDiv">
           <form onSubmit={handleOnSubmit}>
             <TextField
@@ -108,8 +59,8 @@ export default function Contact() {
               onChange={handleOnChange}
               variant="outlined"
               label="Name"
-              fullWidth
-              sx={{ marginTop: 1 }}
+              value={value.name || ''}
+              sx={{ marginTop: 1 , width:"100%" }}
             />
 
             <TextField
@@ -118,22 +69,20 @@ export default function Contact() {
               onChange={handleOnChange}
               variant="outlined"
               label="Email"
-              fullWidth
-              sx={{ marginTop: 1 }}
+              sx={{ marginTop: 1  , width:"100%"}}
             />
 
             <TextField
               name="password"
-              sx={{ marginTop: 1 }}
+              sx={{ marginTop: 1 , width:"100%" }}
               type="password"
               onChange={handleOnChange}
               variant="outlined"
-              fullWidth
               label="Password"
             />
 
             {/* ----Select Fileds */}
-            <FormControl style={{ marginTop: "10px" }} fullWidth>
+            <FormControl style={{ marginTop: "10px" , width:"100%" }} >
               <InputLabel>Age</InputLabel>
               <Select
                 value={age}
@@ -152,7 +101,7 @@ export default function Contact() {
                     {/* ------------------------------------------------------------Radio------------------------------------------------- */}
         <FormControl>
           <FormLabel>Gender</FormLabel>
-          <RadioGroup defaultValue="Female" onChange={handleOnChange} name="genders">
+          <RadioGroup sx={{display:"flex" , flexDirection:"row"}} defaultValue="Female" onChange={handleOnChange} name="genders">
             <FormControlLabel value="Female" control={<Radio />} label="Female" />
             <FormControlLabel value="Male" control={<Radio />} label="Male" />
             <FormControlLabel value="Other" control={<Radio />} label="Other" />
@@ -178,14 +127,13 @@ export default function Contact() {
             <Button
               type="submit"
               style={{ marginTop: "20px" }}
-              fullWidth
+              sx={{width:"100%"}}
               variant="contained"
             >
               Submit
             </Button>
           </form>
         </div>
-      )}
     </>
   );
 }

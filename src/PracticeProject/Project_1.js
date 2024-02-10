@@ -8,36 +8,90 @@ import {
   Tab,
   Button,
   Menu,
-  MenuItem
+  MenuItem,
+  Box,
+  Drawer,
+  ListItemButton,
+  ListItemText,
+  List,
+  ListItem,
 } from "@mui/material";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 export default function Project1() {
   const [tabValue, setTableValue] = useState(0);
+  const [open, setopen] = useState(false);
+  const [anchor, setanchor] = useState(null);
+  const [SideNav, setSideNav] = useState(false);
 
-  const [open , setopen] = useState(false)
-  const [anchor , setanchor] = useState(null)
-
-
-
-  
   return (
     <>
-      <AppBar sx={{backgroundColor:"black"}} >
+      <AppBar sx={{ backgroundColor: "black" }}>
         <Toolbar>
-        <Link style={{textDecoration:"none" , color:"white"}}>  <Typography  variant="h4">Logo</Typography></Link>
+          <Box className="MainLogo">
+            <Typography
+              component={Link}
+              to="/"
+              sx={{ color: "white", textDecoration: "none" }}
+              variant="h4"
+            >
+              Logo
+            </Typography>
+          </Box>
+          {/* -----Hamburger----- */}
+          <Box className="HamburgerBtn">
+            {" "}
+            <Button
+              onClick={() => {
+                setSideNav(true);
+              }}
+              variant="contained"
+            >
+              Ham
+            </Button>{" "}
+          </Box>
 
           {/* Tabs and Tab */}
-          <Tabs
-          className="Tabs"
-            sx={{ margin: "auto" }}
-            value={tabValue}
-            TabIndicatorProps={{ style: { backgroundColor: "white" } }}
+          <Box className="TabsBox" sx={{ margin: "auto" }}>
+            <Tabs
+              className="TabsV"
+              value={tabValue}
+              TabIndicatorProps={{ style: { backgroundColor: "white" } }}
+            >
+              <Tab
+                component={Link}
+                to="/"
+                onClick={() => setTableValue(0)}
+                style={{ color: "white" }}
+                label="Home"
+              />
+              <Tab
+                component={Link}
+                to="/about"
+                onClick={() => setTableValue(1)}
+                style={{ color: "white" }}
+                label="About"
+              />
+              <Tab
+                component={Link}
+                to="/contact"
+                onClick={() => setTableValue(2)}
+                style={{ color: "white" }}
+                label="Contact"
+              />
+            </Tabs>
+          </Box>
+
+          {/* Mobile View */}
+          <Typography
+            className="MobileViewLogo"
+            component={Link}
+            to="/"
+            sx={{ color: "white", textDecoration: "none", margin: "auto" }}
+            variant="h4"
           >
-          <Link  onClick={()=>setTableValue(0)} to="/"> <Tab  sx={{color:"white"}} label="Home" /> </Link>
-           <Link onClick={()=>setTableValue(1)}  to="/about"> <Tab sx={{color:"white"}} label="About" /> </Link>
-           <Link  onClick={()=>setTableValue(2)} to="/contact"> <Tab sx={{color:"white"}} label="Contact" /> </Link>
-          </Tabs>
+            Logo
+          </Typography>
 
           {/* Button */}
           <Button
@@ -48,23 +102,58 @@ export default function Project1() {
               color: "black",
               fontWeight: "600",
             }}
-            onClick={(e)=>{
-                setopen(true)
-                setanchor(e.currentTarget)
-                console.log(e.currentTarget)
+            onClick={(e) => {
+              setopen(true);
+              setanchor(e.currentTarget);
+              console.log(e.currentTarget);
             }}
           >
             Admin
           </Button>
           {/* Menu */}
-          <Menu anchorEl={anchor} onClick={()=>{setopen(false)}} open={open} >
-            <MenuItem>Dashboard</MenuItem>
+          <Menu
+            anchorEl={anchor}
+            onClick={() => {
+              setopen(false);
+            }}
+            open={open}
+          >
+            <MenuItem component={Link} to="/contactinfo" >Dashboard</MenuItem>
             <MenuItem>Logout</MenuItem>
           </Menu>
-
         </Toolbar>
       </AppBar>
 
-         </>
+      <Drawer
+        onClick={() => {
+          setSideNav(false);
+        }}
+        open={SideNav}
+      >
+        <Box sx={{ padding: "5px" , textAlign:"center" , fontWeight:"700" }}>
+          <Typography style={{color:"black" , textDecoration:"none"}} component={Link} to='/' variant="h4" fontWeight={700} >Logo</Typography>
+        </Box>
+
+        <List >
+          <ListItem component={Link} to='/' sx={{backgroundColor:"whitesmoke" , color:"black" , mt:1}}>
+            <ListItemButton>
+              <ListItemText   sx={{margin:"0px 10px"}}>Home</ListItemText>
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem component={Link} to='/about' sx={{backgroundColor:"whitesmoke" , color:"black" , mt:1}}>
+            <ListItemButton>
+              <ListItemText  sx={{margin:"0px 10px"}}>About</ListItemText>
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem component={Link} to='/contact' sx={{backgroundColor:"whitesmoke" , color:"black" , mt:1}} > 
+            <ListItemButton>
+              <ListItemText  sx={{margin:"0px 10px"}} >Contact</ListItemText>
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </Drawer>
+    </>
   );
 }

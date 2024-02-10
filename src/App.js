@@ -1,28 +1,28 @@
 import React from "react";
-import ImageLists from "./Topics/ImageList/ImageLists";
-// import Ratings from "./Topics/Ratings/Ratings";
-// import ProgressBars from "./Topics/ProgressBars/ProgressBars";
-// import SnackBars from "./Topics/SnackBars/SnackBars";
-// import Alerts from "./Topics/Alerts/Alerts";
-// import DrawersTopic from "./Topics/Drawers/DrawersTopic";
-// import AutoCompletes from "./Topics/AutoCompletes/AutoCompletes";
-// import Accordians from "./Topics/Accordions/Accordians";
-// import ListTopic from "./Topics/ListTopic/ListTopic";
-// import ContainerTopic from './Topics/ContainerTopic/ContainerTopic'
+import Project1 from "./PracticeProject/Project_1";
+import { Route, BrowserRouter, Routes } from "react-router-dom";
+import Home from './PracticeProject/Home'
+import Contact from './PracticeProject/Contact'
+import About from './PracticeProject/About'
+import InfoProvider from "./Context/InfoContext";
+import ContactInfo from "./PracticeProject/ContactInfo";
 
 function App() {
-  return <>
-  {/* <ContainerTopic/> */}
-  {/* <ListTopic/> */}
-  {/* <Accordians/> */}
-  {/* <AutoCompletes/> */}
-  {/* <DrawersTopic/> */}
-  {/* <Alerts/> */}
-  {/* <SnackBars/> */}
-  {/* <ProgressBars/> */}
-  {/* <Ratings/> */}
-  <ImageLists/>
-  </>;
+  return (
+    <>
+    <InfoProvider>
+      <BrowserRouter>
+        <Project1 />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contactinfo" element={<ContactInfo/>} />
+        </Routes>
+      </BrowserRouter>
+      </InfoProvider>
+    </>
+  );
 }
 
 export default App;
