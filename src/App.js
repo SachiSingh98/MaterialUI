@@ -6,6 +6,7 @@ import Contact from './PracticeProject/Contact'
 import About from './PracticeProject/About'
 import InfoProvider from "./Context/InfoContext";
 import ContactInfo from "./PracticeProject/ContactInfo";
+import FormValidation from "./FormValidations/FormValidation";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/contactinfo" element={<ContactInfo/>} />
+          <Route path="/FormValidation" element={<FormValidation/>} />
         </Routes>
       </BrowserRouter>
       </InfoProvider>
