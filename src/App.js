@@ -1,4 +1,5 @@
 import React from "react";
+import Datagrid from "./Topics/DataGrid/Datagrid";
 // import Project1 from "./PracticeProject/Project_1";
 // import { Route, BrowserRouter, Routes } from "react-router-dom";
 // import Home from './PracticeProject/Home'
@@ -23,6 +24,9 @@ function App() {
         </Routes>
       </BrowserRouter>
       </InfoProvider> */}
+
+
+      <Datagrid/>
     </>
   );
 }
