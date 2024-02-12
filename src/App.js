@@ -1,18 +1,18 @@
 import React from "react";
-import Datagrid from "./Topics/DataGrid/Datagrid";
-// import Project1 from "./PracticeProject/Project_1";
-// import { Route, BrowserRouter, Routes } from "react-router-dom";
-// import Home from './PracticeProject/Home'
-// import Contact from './PracticeProject/Contact'
-// import About from './PracticeProject/About'
-// import InfoProvider from "./Context/InfoContext";
-// import ContactInfo from "./PracticeProject/ContactInfo";
-// import FormValidation from "./FormValidations/FormValidation";
+
+import { Route, BrowserRouter, Routes } from "react-router-dom";
+import InfoProvider from "./Context/InfoContext";
+import Project1 from './PracticeProject/Project_1'
+import FormValidation from './Topics/FormValidations/FormValidation'
+import ContactInfo from "./PracticeProject/ContactInfo";
+import About from './PracticeProject/About'
+import Contact from './PracticeProject/Contact'
+import Home from './PracticeProject/Home'
 
 function App() {
   return (
     <>
-    {/* <InfoProvider>
+    <InfoProvider>
       <BrowserRouter>
         <Project1 />
         <Routes>
@@ -23,10 +23,7 @@ function App() {
           <Route path="/FormValidation" element={<FormValidation/>} />
         </Routes>
       </BrowserRouter>
-      </InfoProvider> */}
-
-
-      <Datagrid/>
+      </InfoProvider>
     </>
   );
 }
