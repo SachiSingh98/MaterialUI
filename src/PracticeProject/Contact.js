@@ -12,84 +12,82 @@ import {
   FormLabel,
   RadioGroup,
   Radio,
+  Typography,
 } from "@mui/material";
 
 import { InfoContext } from "../Context/InfoContext";
+import { useForm } from "react-hook-form";
 
 export default function Contact() {
-  const [age, setAge] = useState(10);
-  const { data, setdata } = useContext(InfoContext);
-  const [value, setValue] = useState({
-    name: "",
-    email: "",
-    password: "",
-    terms: false,
-    age: age,
-    genders: "",
+  const [age , setage] = useState(10)
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues:{
+      age:10,
+      genders:"Female"
+    }
   });
+  const { data, setdata } = useContext(InfoContext);
+  const [gender, setGender] = useState("Female");
 
-  const handleOnChange = (e) => {
-    setValue({ ...value, [e.target.name]: e.target.value });
-  };
+  const handleOnSubmit = (formData) => {
+    const updatedData = {
+      ...formData,
+      genders: gender,
+    };
 
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
-    setdata([...data, value]);
-    console.log(value);
-    setValue({
-      name: "",
-      email: "",
-      password: "",
-    });
-    setAge(10);
+    console.log(updatedData);
+    setdata([...data, updatedData]);
+    console.log("Sdfsd");
   };
 
   return (
     <>
-      {/* ---------------------Form here------------------------- */}
-
       <div className="FormDiv">
-        <form onSubmit={handleOnSubmit}>
+        <form onSubmit={handleSubmit(handleOnSubmit)}>
           <TextField
             name="name"
             type="text"
-            onChange={handleOnChange}
+            error={Boolean(errors.name)}
             variant="outlined"
+            // According to this document, a <p></p> tag can only contain inline elements. That means putting a <div></div> tag inside it should be improper, since the div tag is a block element. Improper nesting might cause glitches like rendering extra tags, which can affect your javascript and css
+
+            // The reason of add component to span
+            helperText={Boolean(errors.name) ?  <Typography component={"span"} variant="body2" > Name Required</Typography> : null}
             label="Name"
-            value={value.name || ""}
             sx={{ marginTop: 1, width: "100%" }}
+            {...register("name", { required: true })}
           />
 
           <TextField
             name="email"
-            type="email"
-            onChange={handleOnChange}
             variant="outlined"
             label="Email"
-            value={value.email || ""}
             sx={{ marginTop: 1, width: "100%" }}
+            error={Boolean(errors.email)}
+            helperText={Boolean(errors.email)? <Typography component={"span"} variant="body2" >Invalid Email</Typography> :null}
+            {...register("email", { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
           />
 
           <TextField
             name="password"
             sx={{ marginTop: 1, width: "100%" }}
             type="password"
-            onChange={handleOnChange}
             variant="outlined"
             label="Password"
-            value={value.password || ""}
+            required
+            error={Boolean(errors.password)}
+            helperText={Boolean(errors.password)? <Typography component={"span"} variant="body2" >Min length should be 6</Typography> :null}
+            {...register("password" , {minLength:6})}
           />
 
-          {/* ----Select Fileds */}
           <FormControl style={{ marginTop: "10px", width: "100%" }}>
             <InputLabel>Age</InputLabel>
             <Select
-              value={value.age || ""}
-              name="age"
+              {...register("age")}
               label="Age"
-              onChange={(e) => {
-                setValue({ ...value, age: e.target.value });
-              }}
+              value={age}
+              name="age"
+              onChange={(e)=>{setage(e.target.value)}}
             >
               <MenuItem value={10}>Ten</MenuItem>
               <MenuItem value={20}>Twenty</MenuItem>
@@ -97,15 +95,14 @@ export default function Contact() {
             </Select>
           </FormControl>
 
-          {/* -------------------------------------------------MenuItem */}
-          {/* ------------------------------------------------------------Radio------------------------------------------------- */}
           <FormControl>
             <FormLabel sx={{ mt: 2 }}>Gender</FormLabel>
             <RadioGroup
               sx={{ display: "flex", flexDirection: "row" }}
-              defaultValue="Female"
-              onChange={handleOnChange}
+              {...register("genders")}
               name="genders"
+              value={gender}
+              onChange={(e) => { setGender(e.target.value) }}
             >
               <FormControlLabel
                 value="Female"
@@ -121,16 +118,13 @@ export default function Contact() {
             </RadioGroup>
           </FormControl>
 
-          {/*--------------------------------------------- Check Boxes --------------------------------------*/}
           <FormGroup>
             <FormControlLabel
               control={
                 <Checkbox
                   name="terms"
+                  {...register("terms")}
                   style={{ color: "black" }}
-                  onChange={(e) => {
-                    setValue({ ...value, terms: e.target.checked });
-                  }}
                 />
               }
               label="Agree to terms"
@@ -140,13 +134,9 @@ export default function Contact() {
 
           <Button
             type="submit"
-            style={{
-              marginTop: "20px",
-              color: "white",
-              backgroundColor: "black",
-            }}
             sx={{ width: "100%" }}
             variant="contained"
+            disabled={Boolean(errors.email)}
           >
             Submit
           </Button>
