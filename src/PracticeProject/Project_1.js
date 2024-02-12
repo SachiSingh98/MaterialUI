@@ -24,6 +24,7 @@ export default function Project1() {
   const [anchor, setanchor] = useState(null);
   const [SideNav, setSideNav] = useState(false);
 
+
   return (
     <>
       <AppBar sx={{ backgroundColor: "black" }}>
@@ -56,7 +57,7 @@ export default function Project1() {
             <Tabs
               className="TabsV"
               value={tabValue}
-              TabIndicatorProps={{ style: { backgroundColor: "white" } }}
+              TabIndicatorProps={{ style: { backgroundColor: "transparent" } }}
             >
               <Tab
                 component={Link}
