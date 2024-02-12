@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router";
 import {
   Button,
   TextField,
@@ -18,7 +19,11 @@ import {
 import { InfoContext } from "../Context/InfoContext";
 import { useForm } from "react-hook-form";
 
+
+
+
 export default function Contact() {
+  const navigate = useNavigate()
   const [age , setage] = useState(10)
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues:{
@@ -30,15 +35,20 @@ export default function Contact() {
   const [gender, setGender] = useState("Female");
 
   const handleOnSubmit = (formData) => {
+    const uniqueId = Date.now(); // Generate a unique ID using current timestamp
+  
     const updatedData = {
+      id: uniqueId, // Add the ID to the data
       ...formData,
       genders: gender,
     };
-
+  
     console.log(updatedData);
     setdata([...data, updatedData]);
-    console.log("Sdfsd");
+    navigate('/')
+    
   };
+  
 
   return (
     <>
