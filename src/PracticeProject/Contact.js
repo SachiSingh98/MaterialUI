@@ -20,7 +20,12 @@ import { useForm } from "react-hook-form";
 
 export default function Contact() {
   const [age , setage] = useState(10)
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues:{
+      age:10,
+      genders:"Female"
+    }
+  });
   const { data, setdata } = useContext(InfoContext);
   const [gender, setGender] = useState("Female");
 
@@ -55,10 +60,11 @@ export default function Contact() {
 
           <TextField
             name="email"
-            type="email"
             variant="outlined"
             label="Email"
             sx={{ marginTop: 1, width: "100%" }}
+            error={Boolean(errors.email)}
+            helperText={Boolean(errors.email)? <Typography component={"span"} variant="body2" >Invalid Email</Typography> :null}
             {...register("email", { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
           />
 
@@ -68,7 +74,10 @@ export default function Contact() {
             type="password"
             variant="outlined"
             label="Password"
-            {...register("password")}
+            required
+            error={Boolean(errors.password)}
+            helperText={Boolean(errors.password)? <Typography component={"span"} variant="body2" >Min length should be 6</Typography> :null}
+            {...register("password" , {minLength:6})}
           />
 
           <FormControl style={{ marginTop: "10px", width: "100%" }}>
@@ -125,13 +134,9 @@ export default function Contact() {
 
           <Button
             type="submit"
-            style={{
-              marginTop: "20px",
-              color: "white",
-              backgroundColor: "black",
-            }}
             sx={{ width: "100%" }}
             variant="contained"
+            disabled={Boolean(errors.email)}
           >
             Submit
           </Button>
