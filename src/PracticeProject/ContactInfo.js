@@ -3,6 +3,7 @@ import { Box, Typography  , Button} from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { InfoContext } from "../Context/InfoContext";
 import './ContactInfo.css'
+import GridExportFeature from "./GridExportFeature";
 
 export default function ContactInfo() {
   const { data, setdata } = useContext(InfoContext);
@@ -89,6 +90,8 @@ export default function ContactInfo() {
     <>
     {data && data.length > 0 ? <Box  sx={{ height: "100%", width: '100%' , marginTop:"70px" }}>
       <DataGrid
+      sx={{width:"100%" , height:500}}
+      components={{Toolbar:GridExportFeature , BaseButton:Button}}
         rows={data}
         columns={coloumns}
         initialState={{
@@ -101,6 +104,11 @@ export default function ContactInfo() {
         pageSizeOptions={[5]}
         checkboxSelection
         disableRowSelectionOnClick
+        componentsProps={{
+          baseButton:{
+            variant:"outlined"
+          }
+        }}
       />
 
     </Box>: <Box sx={{marginTop:"200px" , textAlign:"center" }} >
