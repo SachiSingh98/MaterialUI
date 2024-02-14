@@ -1,5 +1,6 @@
 import React from "react";
-import GridSystem from "./Topics/GridSystemTopic/GridSystem";
+// import GridSystem from "./Topics/GridSystemTopic/GridSystem";
+import ResponsiveStyling from "./Topics/ResponsiveStyling/ResponsiveStyling";
 // import IconsTopic from "./Topics/IconsButton/IconsTopic";
 // import NightMode from "./Topics/NightMode/NightMode";
 // import ThemeTopic from "./Topics/ThemeAndStyleTopic/ThemeTopic";
@@ -43,7 +44,9 @@ function App() {
 
       {/* <IconsTopic/> */}
 
-      <GridSystem/>
+      {/* <GridSystem/> */}
+
+      <ResponsiveStyling/>
     </>
   );
 }
