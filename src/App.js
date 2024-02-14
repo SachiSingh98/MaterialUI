@@ -1,6 +1,8 @@
 import React from "react";
+import IconsTopic from "./Topics/IconsButton/IconsTopic";
+// import NightMode from "./Topics/NightMode/NightMode";
 // import ThemeTopic from "./Topics/ThemeAndStyleTopic/ThemeTopic";
-import StyleTopic from "./Topics/ThemeAndStyleTopic/StyleTopic";
+// import StyleTopic from "./Topics/ThemeAndStyleTopic/StyleTopic";
 
 // import { Route, BrowserRouter, Routes } from "react-router-dom";
 // import InfoProvider from "./Context/InfoContext";
@@ -32,7 +34,13 @@ function App() {
 
       {/* <ThemeTopic/> */}
 
-      <StyleTopic/>
+      {/* <StyleTopic/> */}
+
+
+      {/* <NightMode/> */}
+
+
+      <IconsTopic/>
     </>
   );
 }
