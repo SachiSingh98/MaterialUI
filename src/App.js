@@ -1,20 +1,22 @@
 import React from "react";
+// import ThemeTopic from "./Topics/ThemeAndStyleTopic/ThemeTopic";
+import StyleTopic from "./Topics/ThemeAndStyleTopic/StyleTopic";
 
-import { Route, BrowserRouter, Routes } from "react-router-dom";
-import InfoProvider from "./Context/InfoContext";
-import Project1 from './PracticeProject/Project_1'
-import FormValidation from './Topics/FormValidations/FormValidation'
-import ContactInfo from "./PracticeProject/ContactInfo";
-import About from './PracticeProject/About'
-import Contact from './PracticeProject/Contact'
-import Home from './PracticeProject/Home'
+// import { Route, BrowserRouter, Routes } from "react-router-dom";
+// import InfoProvider from "./Context/InfoContext";
+// import Project1 from './PracticeProject/Project_1'
+// import FormValidation from './Topics/FormValidations/FormValidation'
+// import ContactInfo from "./PracticeProject/ContactInfo";
+// import About from './PracticeProject/About'
+// import Contact from './PracticeProject/Contact'
+// import Home from './PracticeProject/Home'
 
 
 
 function App() {
   return (
     <>
-    <InfoProvider>
+    {/* <InfoProvider>
       <BrowserRouter>
         <Project1 />
         <Routes>
@@ -25,7 +27,12 @@ function App() {
           <Route path="/FormValidation" element={<FormValidation/>} />
         </Routes>
       </BrowserRouter>
-      </InfoProvider>
+      </InfoProvider> */}
+
+
+      {/* <ThemeTopic/> */}
+
+      <StyleTopic/>
     </>
   );
 }
