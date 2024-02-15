@@ -1,5 +1,6 @@
 import React from "react";
-import GridIndex from "./GridLayoutProject/GridIndex";
+import ResponsiveNavIndex from "./ResponsiveNav/ResponsiveNavIndex";
+// import GridIndex from "./GridLayoutProject/GridIndex";
 // import GridSystem from "./Topics/GridSystemTopic/GridSystem";
 // import ResponsiveStyling from "./Topics/ResponsiveStyling/ResponsiveStyling";
 // import IconsTopic from "./Topics/IconsButton/IconsTopic";
@@ -50,7 +51,10 @@ function App() {
       {/* <ResponsiveStyling/> */}
 
 
-      <GridIndex/>
+      {/* <GridIndex/> */}
+
+
+      <ResponsiveNavIndex/>
     </>
   );
 }
