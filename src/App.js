@@ -1,5 +1,6 @@
 import React from "react";
-import ResponsiveNavIndex from "./ResponsiveNav/ResponsiveNavIndex";
+import FormIndex from "./FormProject/FormIndex";
+// import ResponsiveNavIndex from "./ResponsiveNav/ResponsiveNavIndex";
 // import GridIndex from "./GridLayoutProject/GridIndex";
 // import GridSystem from "./Topics/GridSystemTopic/GridSystem";
 // import ResponsiveStyling from "./Topics/ResponsiveStyling/ResponsiveStyling";
@@ -54,7 +55,10 @@ function App() {
       {/* <GridIndex/> */}
 
 
-      <ResponsiveNavIndex/>
+      {/* <ResponsiveNavIndex/> */}
+
+
+      <FormIndex/>
     </>
   );
 }
